@@ -1,0 +1,10 @@
+defaults: &defaults
+  gitlab_host: <your host here>
+
+production:
+  <<: *defaults
+
+development:
+  <<: *defaults
+test:
+  <<: *defaults

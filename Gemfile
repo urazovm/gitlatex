@@ -18,6 +18,11 @@ gem "font-awesome-rails"
 
 gem 'jbuilder', '~> 1.2'
 
+gem 'draper'
+gem 'virtus'
+gem 'httparty'
+gem 'settingslogic'
+
 gem 'kaminari'
 gem 'sidekiq'
 gem 'whenever', :require => false
