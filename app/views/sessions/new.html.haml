@@ -1,2 +1,7 @@
-%h1 Sessions#new
-%p Find me in app/views/sessions/new.html.haml
+%h1= t('.title')
+= form_for :user, url: session_path do |f|
+  .form-group
+    = f.text_field :login, class: 'form-control', placeholder: t('.name'), required: '', autofocus: ''
+  .form-group
+    = f.password_field :password, class: 'form-control', placeholder: t('.password'), required: ''
+  = f.submit t('.sign_in'), class: 'btn btn-lg btn-primary btn-block'

@@ -1,0 +1,7 @@
+en:
+  sessions:
+    new:
+      title: Sign in
+      name: Username
+      password: Password
+      sign_in: Sign in
