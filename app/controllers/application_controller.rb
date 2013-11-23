@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
-  add_breadcump :root
+  include Breadcrumb
+  add_breadcrumb I18n.t('crumb.dashboard')
 end
