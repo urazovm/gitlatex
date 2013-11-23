@@ -8,17 +8,16 @@ gem 'therubyracer', platforms: :ruby
 
 gem "haml-rails"
 gem 'html2haml', group: :development
-gem "less-rails"
+gem 'sass-rails', '>= 3.2'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'turbolinks'
-gem "twitter-bootstrap-rails"
-gem "font-awesome-rails"
+gem 'bootstrap-sass', '~> 3.0.2.0'
 
 gem 'jbuilder', '~> 1.2'
 
-gem 'draper'
+gem 'draper', '~> 1.3'
 gem 'virtus'
 gem 'httparty'
 gem 'settingslogic'

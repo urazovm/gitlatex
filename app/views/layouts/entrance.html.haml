@@ -7,18 +7,12 @@
     %title= content_for?(:title) ? yield(:title) : "Gitlatex"
     = csrf_meta_tags
     = stylesheet_link_tag "application", media: "all"
+    = stylesheet_link_tag "entrance", media: "all"
     /[if lt IE 9]
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
   %body
     .container
-      = render_breadcrumbs
-      = navbar do
-        = navbar_header do
-          = navbar_brand "Gitlatex"
-        = navbar_collapse do
-          = navbar_list align: 'right' do
-            = navbar_link nil do
-              %span.glyphicon.glyphicon-eject
-      = yield
+      .content.panel.panel-default
+        = yield
     = javascript_include_tag "application"
