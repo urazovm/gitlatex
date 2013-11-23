@@ -18,7 +18,8 @@
           = navbar_brand "Gitlatex"
         = navbar_collapse do
           = navbar_list align: 'right' do
-            = navbar_link nil do
+            = navbar_link session_path, method: :delete do
               %span.glyphicon.glyphicon-eject
+      = render partial: 'layouts/alert'
       = yield
     = javascript_include_tag "application"

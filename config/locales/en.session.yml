@@ -1,7 +1,11 @@
 en:
   sessions:
+    create:
+      failed_to_sign_in: Failed to sign in. Either username or password has been incorrected.
+    destroy:
+      sign_out: Success to sign out
     new:
-      title: Sign in
+      title: Gitlatex
       name: Username
       password: Password
       sign_in: Sign in

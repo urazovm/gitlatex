@@ -1,5 +1,6 @@
 %h1= t('.title')
 = form_for :user, url: session_path do |f|
+  %h2= t('sign_in')
   .form-group
     = f.text_field :login, class: 'form-control', placeholder: t('.name'), required: '', autofocus: ''
   .form-group
