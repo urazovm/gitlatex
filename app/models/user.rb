@@ -1,5 +1,5 @@
 class User
-  include Virtus.model
+  include Gitlab
   
   attribute :id, Integer
   attribute :username, String
@@ -23,23 +23,33 @@ class User
     @decorate ||= UserDecorator.decorate(self)
   end
 
-  module API
-    extend ActiveSupport::Concern
-
-    def users(options=nil)
+  class << self
+    def sign_in(params)
+      response = gitlab.post("/session", query: params)
+      {
+        id: response["id"],
+        name: response["name"],
+        private_token: response["private_token"]
+      } if response.success?
+    end
+    def sign_in?(session)
+      gitlab.available? session
+    end
+    
+    def list(options=nil)
       options = (options || {}).select{|key,_| [:page, :per_page].include? key}
-      response = get("/users", query: options)      
-      response.to_a if response.success?
+      response = gitlab.get("/users", query: options)      
+      response.map{|h| User.new(h)} if response.success?
     end
-
-    def user(id)
-      response = get("/users/#{id}")
-      response.to_hash if response.success?
+    
+    def get(id)
+      response = gitlab.get("/users/#{id}")
+      User.new(response.to_hash) if response.success?
     end
-
+    
     def current
-      response = get("/user")
-      response.to_hash if response.success?
+      response = gitlab.get("/user")
+      User.new(response.to_hash) if response.success?
     end
   end
 end
