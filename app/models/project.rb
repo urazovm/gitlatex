@@ -21,18 +21,29 @@ class Project < ActiveRecord::Base
   attribute :last_activity_at, DateTime
   attribute :namespace, Namespace
 
+  attribute :hooked, Boolean, default: true
+
   def decorate
     @decorate ||= ProjectDecorator.decorate(self)
   end
 
   class << self
+    def with(attrs)
+      p = self.where(id: attrs['id']).first
+      unless p
+        p = self.new attrs
+        p.hooked = false
+      end
+      p
+    end
+    
     def list
       response = gitlab.get("/projects")
-      response.map{|h| Project.new(h)} if response.success?
+      response.map{|h| self.with(h)} if response.success?
     end
     def get(id)
       response = gitlab.get("/projects/#{id}")
-      Project.new(response.to_hash) if response.success?
+      self.with(response.to_hash) if response.success?
     end
   end
   def hooks
