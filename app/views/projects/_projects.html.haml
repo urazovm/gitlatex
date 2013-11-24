@@ -1,0 +1,7 @@
+.list-group
+  - if @projects.empty?
+    .well= t('.no_project')
+  - else
+    - @projects.each do |project|
+      = link_to project_path(project), class: 'list-group-item' do
+        = project.name_with_namespace
