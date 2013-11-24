@@ -20,7 +20,6 @@ class GitlabAccessor
     self.id = session[:id]
     self.name = session[:name]
     self.private_token = session[:private_token]
-    p self.private_token
     self.private_token.present?
   end
   
