@@ -26,8 +26,6 @@ class GitlabAccessor
   def get(path, options=nil)
     options ||= {}
     options.merge! private_token_header
-    p path
-    p options
     HTTP.get path, options
   end
   def post(path, options=nil)
