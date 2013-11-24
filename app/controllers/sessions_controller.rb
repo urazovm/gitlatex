@@ -5,7 +5,9 @@ class SessionsController < ApplicationController
   end
 
   def create
-    if Session.sign_in(user_param, session)
+    response = User.sign_in(user_param)
+    if response
+      session.merge! response
       redirect_to root_path
     else
       redirect_to new_session_path, danger: t('.failed_to_sign_in')
