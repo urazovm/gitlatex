@@ -15,7 +15,7 @@
       = render_breadcrumbs
       = navbar do
         = navbar_header do
-          = navbar_brand "Gitlatex"
+          = navbar_brand "Gitlatex", root_path
         = navbar_collapse do
           = navbar_list align: 'right' do
             = navbar_link session_path, method: :delete do
