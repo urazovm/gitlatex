@@ -1,6 +1,8 @@
 class Session
   include Gitlab
 
+  include User::API
+
   attribute :id, Integer
   attribute :name, String
   attribute :private_token, String
@@ -11,9 +13,7 @@ class Session
       session[:id] = response["id"]
       session[:name] = response["name"]
       session[:private_token] = response["private_token"]
-      true
-    else
-      false
     end
+    response.success?
   end
 end

@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   attr_reader :gitlab
 
   def authenticated!
-    redirect_to new_session_path unless session[:private_token] or current_page?(new_session_path) or current_page?(session_path)
-    @gitlab = Session.new(session)
+    redirect_to new_session_path if session[:private_token].nil?
+    @gitlab = Session.new session
   end
 end

@@ -14,25 +14,23 @@ module Gitlab
     end
   end
 
-  module InstanceMethods
-    def got(path, options=nil)
-      options ||= {}
-      options.merge! private_token_header
-      self.class.get path, options
-    end
-    def post(path, options=nil)
-      options ||= {}
-      options.merge! private_token_header
-      self.class.post path, options
-    end
-
-    private
-    def private_token_header
-      if self.respond_to?(:private_token) and self.private_token.present?
-        {headers: {"PRIVATE-TOKEN" => self.private_token}}
-      else
-        {}
-      end
+  def get(path, options=nil)
+    options ||= {}
+    options.merge! private_token_header
+    self.class.get path, options
+  end
+  def post(path, options=nil)
+    options ||= {}
+    options.merge! private_token_header
+    self.class.post path, options
+  end
+  
+  private
+  def private_token_header
+    if self.respond_to?(:private_token) and self.private_token.present?
+      {headers: {"PRIVATE-TOKEN" => self.private_token}}
+    else
+      {}
     end
   end
 end
