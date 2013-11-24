@@ -21,6 +21,10 @@ class Project < ActiveRecord::Base
   attribute :last_activity_at, DateTime
   attribute :namespace, Namespace
 
+  def decorate
+    @decorate ||= ProjectDecorator.decorate(self)
+  end
+
   class << self
     def list
       response = gitlab.get("/projects")
