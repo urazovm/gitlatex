@@ -7,6 +7,7 @@ class ProjectsController < AuthenticateController
 
   def show
     @project = Project.get(params[:id]).decorate
+    p @project.object.attributes
     add_breadcrumb @project.name_with_namespace, project_path(@project)
   end
 

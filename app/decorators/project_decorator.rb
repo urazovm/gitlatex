@@ -1,5 +1,6 @@
 class ProjectDecorator < Draper::Decorator
   delegate_all
+
   def header
     h.capture do
       h.concat h.content_tag(:span, object.namespace.name + " / ", class: "project-namespace")
@@ -34,6 +35,7 @@ class ProjectDecorator < Draper::Decorator
       h.concat h.content_tag(:span, h.truncate(object.name, length: 25), class: "project-item-name")
     end
   end
+
   def activity
     h.capture do
       h.concat h.content_tag(:span, h.t('projects.decorator.last_activity'))
