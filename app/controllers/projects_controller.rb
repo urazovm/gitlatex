@@ -11,5 +11,14 @@ class ProjectsController < AuthenticateController
   end
 
   def update
+    if params[:hooked] == "true"
+      @project = Project.new params.permit(:id, :hooked)
+      p @project
+#      if @project.save
+#      end
+    else
+      @project = Project.where(params[:id]).first
+      @project.destroy if @project
+    end
   end
 end
