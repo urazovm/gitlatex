@@ -7,3 +7,26 @@
 .project-item-text {
     @extend small;
 }
+.project-namespace {
+    @extend small;
+}
+.project-name {
+    color: $brand-primary;
+}
+.repo {
+    .btn {
+        @extend .btn-default;
+    }
+    .current {
+        @extend .btn-primary;
+    }
+    margin-bottom: 8px;
+}
+.project-header {
+    position: relative;
+}
+.project-hooked {
+    position: absolute;
+    display: inline-block;
+    right: 0;
+}

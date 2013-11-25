@@ -1,22 +1,40 @@
 class ProjectDecorator < Draper::Decorator
   delegate_all
+  def header
+    h.capture do
+      h.concat h.content_tag(:span, object.namespace.name + " / ", class: "project-namespace")
+      h.concat h.content_tag(:span, object.name, class: "project-name")
+    end
+  end
+  def hooked_state
+    if object.hooked?
+      return "check", "primary"
+    else
+      return "minus", "default"
+    end
+  end
+  def hook_button
+    icon, color = hooked_state
+    h.link_to h.project_path(object), method: 'put', id: "project-hook-button", class: "btn btn-#{color}", data: {remote: true, params: "hooked=#{!object.hooked}"} do
+      h.capture do
+        h.concat h.content_tag(:span, nil, class: "glyphicon glyphicon-#{icon}")
+      end
+    end
+  end
+  def hooked
+    icon, color = hooked_state
+    h.content_tag(:span,
+      h.content_tag(:span, nil, class: "glyphicon glyphicon-#{icon}"),
+      class: "label label-#{color} pull-right")
+  end
   def item_header
     h.capture do
-      begin
-        if object.hooked?
-          icon, color = "check", "primary"
-        else
-          icon, color = "minus", "default"
-        end
-        h.concat h.content_tag(:span,
-          h.content_tag(:span, nil, class: "glyphicon glyphicon-#{icon}"),
-          class: "label label-#{color} pull-right")
-      end
+      h.concat hooked
       h.concat h.content_tag(:span, object.namespace.name + "/", class: "project-item-namespace")
       h.concat h.content_tag(:span, h.truncate(object.name, length: 25), class: "project-item-name")
     end
   end
-  def item_text
+  def activity
     h.capture do
       h.concat h.content_tag(:span, h.t('projects.decorator.last_activity'))
       h.concat h.content_tag(:span,

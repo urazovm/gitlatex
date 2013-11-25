@@ -1,2 +1,6 @@
-%h1 Projects#show
-%p Find me in app/views/projects/show.html.haml
+.row
+  .col-xs-12.col-sm-9
+    = render @project
+  .col-xs-6.col-sm-3
+    /= render partial: 'builds/builds', object: @project.builds
+
