@@ -33,7 +33,5 @@ test:
   adapter: mysql2
   encoding: utf8
   database: gitlatex_test
-  pool: 5
-  username: gitlatex
-  password: your password here
-  socket: /var/run/mysqld/mysqld.sock
+  username: travis
+
