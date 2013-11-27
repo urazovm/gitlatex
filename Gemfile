@@ -41,5 +41,9 @@ group :doc do
 end
 
 
+group :test do
+  gem 'coveralls', :require => false
+end
+
 # Use debugger
 # gem 'debugger', group: [:development, :test]
