@@ -1,5 +1,6 @@
 class ProjectsController < AuthenticateController
   add_breadcrumb I18n.t('crumb.projects'), projects_path
+  skip_before_action :verify_authenticity_token, only: [:hook]
   
   def index
     @projects = ProjectDecorator.decorate_collection(Project.list || [])
@@ -23,5 +24,8 @@ class ProjectsController < AuthenticateController
   end
 
   def hook
+    @web_hook = WebHook.new params
+    p @web_hook
+    head :ok
   end
 end
