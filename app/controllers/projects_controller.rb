@@ -27,8 +27,8 @@ class ProjectsController < AuthenticateController
   def hook
     @web_hook = WebHook.new params
     @build = @web_hook.build
-    if build.save
-      BuildWorker.perform_async build.id
+    if @build.save
+      BuildWorker.perform_async @build.id
     end
     head :ok
   end
