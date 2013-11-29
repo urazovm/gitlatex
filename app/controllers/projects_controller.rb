@@ -1,6 +1,7 @@
 class ProjectsController < AuthenticateController
   add_breadcrumb I18n.t('crumb.projects'), projects_path
   skip_before_action :verify_authenticity_token, only: [:hook]
+  skip_before_action :authenticated!, only: [:hook]
   
   def index
     @projects = ProjectDecorator.decorate_collection(Project.list || [])
