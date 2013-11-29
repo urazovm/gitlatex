@@ -1,4 +1,7 @@
 en:
   events:
+    event:
+      title: Unknown event was occured
+      message: Unkown event
     events:
       title: Latest Activity

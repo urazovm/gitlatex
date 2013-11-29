@@ -1,0 +1,7 @@
+en:
+  builds:
+    build:
+      commit_id: "Commit Id: %{id}"
+      commit_message: Comment
+      titles:
+        wating: Build is processing

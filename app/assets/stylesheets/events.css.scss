@@ -1,13 +1,36 @@
 
-.event-icon .glyphicon {
+.event-item {
+    @extend .panel;
+    @extend .panel-default;
+    position: relative;
+    display: block;
+    padding: 8px 12px;
+    margin: 0;
+    color: $text-color;
+    &:focus,
+    &:hover,
+    &:active,
+    &.active {
+        color: $text-color;
+        text-decoration: none;
+        .media-heading {
+            text-decoration: underline;
+        }
+    }
+}
+.event-icon {
+    @extend .glyphicon;
     display: inline-block;
     color: #fff;
-    background-color: $brand-primary;
     font-size: 40px;
     padding: 12px;
-    width: 64px;
+    width: 64px !important;
     height: 64px;
     text-align: center;
     vertical-align: baseline;
-    border-radius: 12px
+    border-radius: 12px;
+}
+.event-icon-wating {
+    @extend .glyphicon-time;
+    background-color: $brand-info;
 }

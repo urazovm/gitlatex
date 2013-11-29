@@ -12,6 +12,10 @@ class Build < ActiveRecord::Base
   end
   private :push_event
 
+  def decorate(options=nil)
+    @decorate ||= BuildDecorator.decorate(self)
+  end
+
   def perform
     p self
   end
