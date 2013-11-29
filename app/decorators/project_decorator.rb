@@ -7,26 +7,25 @@ class ProjectDecorator < Draper::Decorator
       h.concat h.content_tag(:span, object.name, class: "project-name")
     end
   end
-  def hooked_state
-    if object.hooked?
-      return "check", "primary"
-    else
-      return "minus", "default"
-    end
+  def hooked_color
+    object.hooked? ? "primary" : "default"
   end
   def hook_button
-    icon, color = hooked_state
-    h.link_to h.project_path(object), method: 'put', id: "project-hook-button", class: "btn btn-#{color}", data: {remote: true, params: "hooked=#{!object.hooked}"} do
+    h.link_to(h.project_path(object),
+      method: 'put',
+      id: "project-hook-button",
+      class: "btn-toggle" + (object.hooked ? " on" : ""),
+      data: {remote: true}) do
       h.capture do
-        h.concat h.content_tag(:span, nil, class: "glyphicon glyphicon-#{icon}")
+        h.concat h.content_tag(:span, h.t("projects.decorator.on"), class: "btn-toggle-item")
+        h.concat h.content_tag(:span, h.t("projects.decorator.off"), class: "btn-toggle-item")
       end
     end
   end
   def hooked
-    icon, color = hooked_state
     h.content_tag(:span,
-      h.content_tag(:span, nil, class: "glyphicon glyphicon-#{icon}"),
-      class: "label label-#{color} pull-right")
+      h.t("projects.decorator." + (object.hooked? ? "on" : "off")),
+      class: "label label-#{hooked_color} pull-right")
   end
   def item_header
     h.capture do

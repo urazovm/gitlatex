@@ -7,19 +7,21 @@ class ProjectsController < AuthenticateController
 
   def show
     @project = Project.get(params[:id]).decorate
-    p @project.object.attributes
     add_breadcrumb @project.name_with_namespace, project_path(@project)
   end
 
   def update
-    if params[:hooked] == "true"
-      @project = Project.new params.permit(:id, :hooked)
-      p @project
-#      if @project.save
-#      end
+    @project = Project.get(params[:id]).decorate
+    @project.object.hooked = !@project.object.hooked
+    unless request.xhr?
+      redirect_to project_path(@project)
     else
-      @project = Project.where(params[:id]).first
-      @project.destroy if @project
+      respond_to do |format|
+        format.js
+      end
     end
+  end
+
+  def hook
   end
 end

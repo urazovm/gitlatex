@@ -14,5 +14,4 @@ class ApplicationController < ActionController::Base
   def authenticated!
     redirect_to new_session_path unless User.sign_in?(session)
   end
-
 end

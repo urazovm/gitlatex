@@ -1,7 +1,7 @@
 class GitlabAccessor
   class HTTP
     include HTTParty
-    base_uri "#{Settings.gitlab_host}api/v#{Settings.gitlab_api_version}/"
+    base_uri "http://#{Settings.gitlab.host}/api/v#{Settings.gitlab.api_version}/"
     debug_output
   end
   include Virtus.model
@@ -32,6 +32,11 @@ class GitlabAccessor
     options ||= {}
     options.merge! private_token_header
     HTTP.post path, options
+  end
+  def delete(path, options=nil)
+    options ||= {}
+    options.merge! private_token_header
+    HTTP.delete path, options
   end
   
   private

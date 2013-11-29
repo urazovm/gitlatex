@@ -1,5 +1,11 @@
 defaults: &defaults
-  gitlab_host: <your host here>
+
+  host: localhost
+  port: 3000
+
+  gitlab:
+    host: localhost
+    api_version: 3
 
 production:
   <<: *defaults
