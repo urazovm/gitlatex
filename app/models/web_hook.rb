@@ -18,20 +18,22 @@ class WebHook
     @user ||= User.get(user_id)
   end
 
-  def builds
-    Enumerator.new do |y|
-      commits.each do |commit|
-        build = Build.new
-        build.project_id = self.project_id
-        build.commit_id = commit.id
-        build.commit_message = commit.message
-        build.commit_timestamp = commit.timestamp
-        build.commit_url = commit.url
-        build.author_name = commit.author.name
-        build.author_email = commit.author.email
-        build.status = :wating
-        y << build
-      end
-    end
+  def build
+    commit = commits.last
+    build = Build.new
+    build.project_id = self.project_id
+    build.ref = self.ref
+    build.repository_name = self.repository.name
+    build.repository_url = self.repository.url
+    build.repository_description = self.repository.description
+    build.repository_homepage = self.repository.homepage
+    build.commit_id = commit.id
+    build.commit_message = commit.message
+    build.commit_timestamp = commit.timestamp
+    build.commit_url = commit.url
+    build.author_name = commit.author.name
+    build.author_email = commit.author.email
+    build.status = :wating
+    build
   end
 end
