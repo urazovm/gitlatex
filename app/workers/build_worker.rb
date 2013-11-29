@@ -2,7 +2,7 @@ class BuildWorker
   include Sidekiq::Worker
 
   def perform(id)
-    @build = Build.where(id).first
+    @build = Build.where(id: id).first
     if @build
       @build.perform
     end
