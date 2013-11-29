@@ -1,6 +1,7 @@
 en:
   builds:
     build:
+      branch: "Branch: %{branch}"
       commit_id: "Commit Id: %{id}"
       commit_message: Comment
       titles:
