@@ -6,7 +6,7 @@ class Build < ActiveRecord::Base
   def push_event
     event = Event.new
     event.eventable = self
-    event.user_id = self.
+    event.project_id = self.project_id
     event.status = self.status
     event.save
   end
