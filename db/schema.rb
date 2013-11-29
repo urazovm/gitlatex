@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131129093103) do
+ActiveRecord::Schema.define(version: 20131129205008) do
 
   create_table "builds", force: true do |t|
     t.integer  "project_id"
@@ -26,5 +26,16 @@ ActiveRecord::Schema.define(version: 20131129093103) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "events", force: true do |t|
+    t.integer  "project_id"
+    t.string   "status"
+    t.integer  "eventable_id"
+    t.string   "eventable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "events", ["project_id", "updated_at"], name: "index_events_on_project_id_and_updated_at", using: :btree
 
 end
