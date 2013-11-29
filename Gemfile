@@ -31,6 +31,8 @@ gem 'slim'
 
 gem 'puma'
 
+gem 'seed-fu', github: 'mbleigh/seed-fu'
+
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0.beta'
 end
