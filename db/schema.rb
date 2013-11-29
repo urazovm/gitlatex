@@ -11,6 +11,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20131129232334) do
+
+  create_table "builds", force: true do |t|
+    t.integer  "project_id"
+    t.string   "commit_id"
+    t.text     "commit_message"
+    t.datetime "commit_timestamp"
+    t.string   "commit_url"
+    t.string   "author_name"
+    t.string   "author_email"
+    t.string   "status"
+    t.text     "log"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "ref"
+    t.string   "repository_name"
+    t.string   "repository_url"
+    t.text     "repository_description"
+    t.string   "repository_homepage"
+  end
+
+  create_table "events", force: true do |t|
+    t.integer  "project_id"
+    t.string   "status"
+    t.integer  "eventable_id"
+    t.string   "eventable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "events", ["project_id", "updated_at"], name: "index_events_on_project_id_and_updated_at", using: :btree
 
 end

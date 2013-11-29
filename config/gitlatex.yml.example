@@ -3,6 +3,10 @@ defaults: &defaults
   host: localhost
   port: 3000
 
+  redis:
+    host: localhost
+    port: 6379
+
   gitlab:
     host: localhost
     api_version: 3

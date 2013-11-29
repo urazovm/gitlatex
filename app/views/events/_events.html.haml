@@ -1,5 +1,5 @@
 %h2= t('.title')
 %ul.media-list
-  - (1..10).each do |event|
-    = render partial: 'events/event', object: event
+  - events.each do |event|
+    = render event
   

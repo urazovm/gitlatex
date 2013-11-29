@@ -1,7 +1,8 @@
-%li.media
-  .event-icon.pull-left
-    %span.media-object.glyphicon.glyphicon-saved
-  .media-body
-    %h4.media-heading= event
-    = "Num. #{event} event"
+%li
+  = link_to event.path, class: 'media event-item' do
+    .pull-left
+      = event.status
+    .media-body
+      = event.title
+      = event.message
           

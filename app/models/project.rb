@@ -32,6 +32,10 @@ class Project
     Rails.application.routes.url_helpers.project_hook_url(self, host: Settings.host, port: Settings.port, only_path: false)
   end
 
+  def events
+    @events ||= Event.project(self.id)
+  end
+
   def hooked
     !self.hook.nil?
   end
