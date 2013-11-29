@@ -1,4 +1,4 @@
-class Project < ActiveRecord::Base
+class Project
   include Gitlab
 
   attribute :id, Integer
@@ -21,19 +21,57 @@ class Project < ActiveRecord::Base
   attribute :last_activity_at, DateTime
   attribute :namespace, Namespace
 
+  attribute :hooks, Array[Hook], default: :retrive_hooks
+  attribute :hook, Hook, writer: :private, default: :own_hook
+
+  def decorate
+    @decorate ||= ProjectDecorator.decorate(self)
+  end
+
+  def hook_url
+    Rails.application.routes.url_helpers.project_hook_url(self, host: Settings.host, port: Settings.port, only_path: false)
+  end
+
+  def hooked
+    !self.hook.nil?
+  end
+  alias :hooked? :hooked
+  def hooked=(value)
+    self.hook =
+      if value
+        h = add_hook
+        self.hooks << h if h
+        h
+      else
+        delete_hook unless self.hook.nil?
+      end
+  end
+
   class << self
     def list
       response = gitlab.get("/projects")
-      response.map{|h| Project.new(h)} if response.success?
+      response.map{|h| self.new(h)} if response.success?
     end
     def get(id)
       response = gitlab.get("/projects/#{id}")
-      Project.new(response.to_hash) if response.success?
+      self.new(response.to_hash) if response.success?
     end
   end
-  def hooks
-    response = get("/projects/#{id}/hooks")
+
+  private
+  def retrive_hooks
+    response = gitlab.get("/projects/#{id}/hooks")
+    response.map{|h| Hook.new(h)} if response.success?
+  end
+  def own_hook
+    hooks.find{|hook| hook.url == hook_url} if hooks
+  end
+  def add_hook
+    response = gitlab.post("/projects/#{id}/hooks", {query: {url: hook_url}})
     Hook.new(response.to_hash) if response.success?
   end
-  
+  def delete_hook
+    response = gitlab.delete("/projects/#{id}/hooks/#{hook.id}")
+    self.hook unless response.success?
+  end
 end

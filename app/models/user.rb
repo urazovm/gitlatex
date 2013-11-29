@@ -3,7 +3,7 @@ class User
   
   attribute :id, Integer
   attribute :username, String
-  attribute :emal, String
+  attribute :email, String
   attribute :name, String
   attribute :state, String
   attribute :created_at, DateTime

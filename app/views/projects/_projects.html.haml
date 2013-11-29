@@ -1,0 +1,11 @@
+.list-group
+  - if @projects.empty?
+    .well= t('.no_project')
+  - else
+    - @projects.each do |project|
+      = link_to project_path(project), class: 'list-group-item' do
+        %h4.list-group-item-heading
+          = project.item_header
+        %p.project-item-text.list-group-item-text
+          %small= project.activity
+
