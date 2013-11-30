@@ -33,6 +33,11 @@ gem 'puma'
 
 gem 'seed-fu', github: 'mbleigh/seed-fu'
 
+group :development do
+  gem 'pry-rails'
+  gem 'pry-debugger'
+end
+
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0.beta'
 end
