@@ -2,7 +2,7 @@ class EventDecorator < Draper::Decorator
   decorates_association :eventable
 
   def path
-    nil
+    eventable.path
   end
   def status
     h.content_tag(:span, nil, class: "media-object event-icon event-icon-#{object.status || 'default'}")

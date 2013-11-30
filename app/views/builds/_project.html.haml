@@ -1,0 +1,16 @@
+%h2= t('.project')
+%h3= @project.header
+.activity
+  %small= @project.activity
+.link
+  %small= link_to @project.web_url, @project.web_url
+%p.well.project-description
+  = @project.description
+%dl
+  %dt= t('.owner')
+  %dd= @project.owner.name
+  %dt= t('.created_at')
+  %dd= l(@project.created_at)
+
+  
+

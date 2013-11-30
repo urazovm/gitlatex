@@ -38,6 +38,10 @@ class Project
     @events ||= Event.project(self.id)
   end
 
+  def builds
+    @builds ||= Build.where(project_id: self.id).order(updated_at: :desc)
+  end
+
   def hooked
     !self.hook.nil? and !self.key.nil?
   end

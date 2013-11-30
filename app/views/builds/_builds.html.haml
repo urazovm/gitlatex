@@ -1,0 +1,4 @@
+.builds.list-group
+  - builds.each do |build|
+    = link_to project_build_path(@project, build), class: 'build-item list-group-item' do
+      = render build

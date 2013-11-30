@@ -3,6 +3,9 @@ defaults: &defaults
   host: localhost
   port: 3000
 
+  build:
+    tmp_dir: <%= Rails.root.join("tmp") %>
+
   redis:
     host: localhost
     port: 6379
