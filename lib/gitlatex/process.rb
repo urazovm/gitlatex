@@ -10,7 +10,7 @@ class Gitlatex::Process
     self.url = build.repository_url
     self.log = []
     self.tmp_dir = File.join(Settings.build.tmp_dir, build.unique_name)
-    self.output_dir = File.join(Settings.build.base_dir, build.unique_name)
+    self.output_dir = build.unique_name
     self.files = []
     FileUtils.mkdir_p tmp_dir
   end
@@ -70,11 +70,11 @@ class Gitlatex::Process
   end
 
   def move_files(config)
-    FileUtils.mkdir_p output_dir
+    FileUtils.mkdir_p Rails.root.join("public", "files", output_dir)
     config.output_files.each do |file|
-      to = File.join(self.output_dir, file)
+      to = Rails.root.join("public", "files", self.output_dir, file)
       FileUtils.mv file, to
-      self.files << {name: file, path: to}
+      self.files << {name: file, path: File.join(self.output_dir, file)}
     end
   end
 

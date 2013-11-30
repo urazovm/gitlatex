@@ -4,7 +4,6 @@ defaults: &defaults
   port: 3000
 
   build:
-    base_dir: <%= Rails.root.join("public/files") %>
     tmp_dir: <%= Rails.root.join("tmp") %>
 
   redis:
