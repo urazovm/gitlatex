@@ -1,3 +1,4 @@
+require 'gitlatex'
 class Build < ActiveRecord::Base
   has_many :events, as: :eventable, dependent: :delete_all
   has_many :files, class_name: BuildedFile.name , dependent: :destroy
@@ -18,8 +19,10 @@ class Build < ActiveRecord::Base
   end
 
   def perform
-    @project = project
-    p @project
+    @process = Gitlatex::Process.perform self
+    require 'pp'
+    pp @process
+    
   end
 
   def project
@@ -28,5 +31,9 @@ class Build < ActiveRecord::Base
 
   def branch
     ref.split('refs/heads/')[1]
+  end
+
+  def unique_name
+    "builds/build#{id}"
   end
 end

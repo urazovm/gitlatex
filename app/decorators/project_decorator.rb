@@ -7,6 +7,7 @@ class ProjectDecorator < Draper::Decorator
   delegate :description
   delegate :owner
   delegate :created_at
+  delegate :hooked?
   
   decorates_association :builds
 
