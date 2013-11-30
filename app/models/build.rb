@@ -19,4 +19,8 @@ class Build < ActiveRecord::Base
   def perform
     p self
   end
+
+  def branch
+    ref.split('refs/heads/')[1]
+  end
 end

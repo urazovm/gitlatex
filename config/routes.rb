@@ -5,6 +5,7 @@ Gitlatex::Application.routes.draw do
 
   resources :projects, only: [:index, :show, :update] do
     post :hook
+    resources :builds, only: [:show]
   end
   
   resource :session, only: [:create, :new, :destroy]

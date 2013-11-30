@@ -1,5 +1,14 @@
 class ProjectDecorator < Draper::Decorator
-  delegate_all
+  delegate :id
+  delegate :name_with_namespace
+  delegate :web_url
+  delegate :ssh_url_to_repo
+  delegate :http_url_to_repo
+  delegate :description
+  delegate :owner
+  delegate :created_at
+  
+  decorates_association :builds
 
   def header
     h.capture do
