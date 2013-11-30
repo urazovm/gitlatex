@@ -1,0 +1,12 @@
+en:
+  builds:
+    build:
+      branch: "Branch: %{branch}"
+      commit_id: "Commit Id: %{id}"
+      commit_message: Comment
+      titles:
+        wating: Building...
+        success: Build successful
+        error: Build failed
+      log:
+        process: "Process %{command}"

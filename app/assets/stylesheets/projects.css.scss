@@ -1,0 +1,86 @@
+.project-item-namespace {
+    @extend small;
+}
+.project-item-name {
+    color: $brand-primary;
+}
+.project-item-text {
+    @extend small;
+}
+
+.project-namespace {
+    @extend small;
+}
+.project-name {
+    color: $brand-primary;
+}
+.repo {
+    .btn {
+        @extend .btn-default;
+    }
+    .current {
+        @extend .btn-primary;
+    }
+    margin-bottom: 8px;
+}
+.project-header {
+    position: relative;
+}
+.project-hooked {
+    position: absolute;
+    display: inline-block;
+    right: 0;
+}
+
+.btn-toggle {
+    @extend .btn;
+    padding: 0;
+    background: $btn-default-bg;
+
+    .btn-toggle-item {
+        position: relative;
+        display: inline-block;
+        width: 46px;
+        padding: $padding-base-vertical $padding-base-horizontal;
+        border-radius: $border-radius-base;
+        z-index: 2;
+    }
+    &:hover,
+    &:focus,
+    &:active,
+    &.active {
+        background-color: darken($btn-default-bg, 8%);
+        border-color: darken($btn-default-border, 12%);
+    }
+    .btn-toggle-item:nth-of-type(1) {
+        color: $btn-default-color;
+        @include transition(color .2s linear);
+    }
+    .btn-toggle-item:nth-of-type(2) {
+        color: $btn-primary-color;
+        @include transition(color .2s linear);
+    }
+    &:before{
+        background: $btn-primary-bg;
+        content: '';
+        display: block;
+        height: $font-size-base*$line-height-base + 2*$padding-base-vertical;
+        width: 46px;
+        position: absolute;
+        border-radius: $border-radius-base;
+        z-index: 1;
+        left: 47px;
+        @include transition(left .2s linear);
+    }
+    &.on {
+        .btn-toggle-item:nth-of-type(1) {
+            color: $btn-primary-color;
+        }
+        .btn-toggle-item:nth-of-type(2) {
+            color: $btn-default-color;
+        }
+        &:before{
+            left: 1px;
+        }        
+    }
+}

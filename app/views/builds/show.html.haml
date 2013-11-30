@@ -1,0 +1,10 @@
+.row
+  .col-xs12.col-sm-9
+    %h1= @build.title
+    = @build.message
+    %h2= t('.files')
+    = render @build.files
+    %h2= t('.log')
+    .build-log= @build.log
+  .col-xs-6.col-sm-3
+    = render 'builds/project', object: @project

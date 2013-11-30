@@ -1,0 +1,8 @@
+en:
+  projects:
+    decorator:
+      last_activity: "Last Activity: "
+      never: Never
+    index:
+      title: Your Projects List
+

@@ -1,0 +1,7 @@
+.row
+  .col-xs-12.col-sm-9
+    = render @project
+  .col-xs-6.col-sm-3
+    %h3= t(".builds")
+    = render partial: 'builds/builds', object: @project.builds
+
