@@ -25,6 +25,7 @@ class Gitlatex::Process
   end
 
   def run(config)
+    self.log << :before_script
     config.before_script.each do |script|
       command_with_log script
     end
@@ -38,6 +39,7 @@ class Gitlatex::Process
         command_with_log config.commands[process]
       end
     end
+    self.log << :after_script
     config.after_script.each do |script|
       command_with_log script
     end

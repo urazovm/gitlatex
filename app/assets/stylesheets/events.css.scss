@@ -32,5 +32,13 @@
 }
 .event-icon-wating {
     @extend .glyphicon-time;
-    background-color: $brand-info;
+    background-color: $btn-info-bg;
+}
+.event-icon-success {
+    @extend .glyphicon-ok-sign;
+    background-color: $btn-success-bg;
+}
+.event-icon-error {
+    @extend .glyphicon-warning-sign;
+    background-color: $btn-danger-bg;
 }

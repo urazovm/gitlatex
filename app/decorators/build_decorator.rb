@@ -15,6 +15,10 @@ class BuildDecorator < Draper::Decorator
     case status.to_sym
     when :wating
       I18n.t("builds.build.titles.wating")
+    when :success
+      I18n.t("builds.build.titles.success")
+    when :error
+      I18n.t("builds.build.titles.error")
     end
   end
   def message(status=nil)

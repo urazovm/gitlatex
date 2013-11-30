@@ -5,6 +5,6 @@
     %h2= t('.files')
     = render @build.files
     %h2= t('.log')
-    %pre= @build.log
+    .build-log= @build.log
   .col-xs-6.col-sm-3
     = render 'builds/project', object: @project

@@ -25,12 +25,15 @@ class Build < ActiveRecord::Base
     self.log = ''
     @process.log.each do |log|
       if log.is_a?(Symbol)
+        self.log << "<h3>"
         self.log << I18n.t("builds.build.log.process", command: log.to_s)
+        self.log << "</h3>"
       else
+        self.log << "<strong>&gt; "
         self.log << log.command
-        self.log << "\n"
-        self.log << log.output
-        self.log << "\n"
+        self.log << "</strong><br/>"
+        self.log << log.output.gsub(/\n/, "<br/>")
+        self.log << "<br/>"
       end
     end
     @process.files.each do |file|
