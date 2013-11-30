@@ -1,6 +1,8 @@
 class BuildDecorator < Draper::Decorator
   delegate :commit_id
 
+  decorates_association :files
+
   def log
     h.raw object.log
   end

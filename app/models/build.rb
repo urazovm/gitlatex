@@ -1,5 +1,6 @@
 class Build < ActiveRecord::Base
   has_many :events, as: :eventable, dependent: :delete_all
+  has_many :files, class_name: BuildedFile.name , dependent: :destroy
 
   after_save :push_event
 
@@ -17,7 +18,12 @@ class Build < ActiveRecord::Base
   end
 
   def perform
-    p self
+    @project = project
+    p @project
+  end
+
+  def project
+    Project.get(self.project_id)
   end
 
   def branch

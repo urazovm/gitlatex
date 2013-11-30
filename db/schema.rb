@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131129232334) do
+ActiveRecord::Schema.define(version: 20131130010932) do
+
+  create_table "builded_files", force: true do |t|
+    t.string   "name"
+    t.string   "path"
+    t.integer  "build_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "builded_files", ["build_id"], name: "index_builded_files_on_build_id", using: :btree
 
   create_table "builds", force: true do |t|
     t.integer  "project_id"
