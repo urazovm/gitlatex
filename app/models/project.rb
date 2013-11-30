@@ -23,6 +23,8 @@ class Project
 
   attribute :hooks, Array[Hook], default: :retrive_hooks
   attribute :hook, Hook, writer: :private, default: :own_hook
+  attribute :keys, Array[Key], default: :retrive_keys
+  attribute :key, Key, writer: :private, default: :own_key
 
   def decorate
     @decorate ||= ProjectDecorator.decorate(self)
@@ -41,7 +43,7 @@ class Project
   end
 
   def hooked
-    !self.hook.nil?
+    !self.hook.nil? and !self.key.nil?
   end
   alias :hooked? :hooked
   def hooked=(value)
@@ -52,6 +54,14 @@ class Project
         h
       else
         delete_hook unless self.hook.nil?
+      end
+    self.key = 
+      if value
+        h = add_key
+        self.keys << h if h
+        h
+      else
+        delete_key unless self.key.nil?
       end
   end
 
@@ -74,12 +84,30 @@ class Project
   def own_hook
     hooks.find{|hook| hook.url == hook_url} if hooks
   end
+  def retrive_keys
+    response = gitlab.get("/projects/#{id}/keys")
+    response.map{|h| Key.new(h)} if response.success?
+  end
+  def own_key
+    keys.find{|key| key.key == Key.host_key} if keys
+  end
+
+  
   def add_hook
-    response = gitlab.post("/projects/#{id}/hooks", {query: {url: hook_url}})
+    response = gitlab.post("/projects/#{id}/hooks", body: {url: hook_url})
     Hook.new(response.to_hash) if response.success?
   end
   def delete_hook
     response = gitlab.delete("/projects/#{id}/hooks/#{hook.id}")
     self.hook unless response.success?
+  end
+
+  def add_key
+    response = gitlab.post("/projects/#{id}/keys", body: {title: "Gitlatex", key: Key.host_key})
+    Key.new(response.to_hash) if response.success?
+  end
+  def delete_key
+    response = gitlab.delete("/projects/#{id}/keys/#{key.id}")
+    self.key unless response.success?
   end
 end
