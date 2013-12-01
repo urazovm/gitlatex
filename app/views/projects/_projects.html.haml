@@ -5,7 +5,8 @@
     - @projects.each do |project|
       = link_to project_path(project), class: 'list-group-item' do
         %h4.list-group-item-heading
-          = project.item_header
+          = project.hooked
+          = project.title(25)
         %p.project-item-text.list-group-item-text
           %small= project.activity
 
