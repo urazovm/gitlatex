@@ -1,6 +1,6 @@
+.project-hooked
+  = @project.hook_button
 .project-header.page-header
-  .project-hooked
-    = @project.hook_button
   %h1
     = @project.header
   .activity
@@ -16,9 +16,9 @@
       %input.form-control{value: @project.ssh_url_to_repo}
     .tab-pane#project-repo-http
       %input.form-control{value: @project.http_url_to_repo}
-%p.lead.well.project-description
+%p.well.project-description
   = @project.description
-%dl.dl-horizontal
+%dl
   %dt= t('.owner')
   %dd= @project.owner.name
   %dt= t('.created_at')

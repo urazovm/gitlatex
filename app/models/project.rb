@@ -39,7 +39,7 @@ class Project
   end
 
   def builds
-    @builds ||= Build.where(project_id: self.id).order(updated_at: :desc)
+    @builds ||= Build.project(self.id)
   end
 
   def hooked

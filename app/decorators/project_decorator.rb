@@ -9,8 +9,9 @@ class ProjectDecorator < Draper::Decorator
   delegate :created_at
   delegate :hooked?
   
+  decorates_association :events, with: EventsDecorator
   decorates_association :builds
-
+  
   def header
     h.capture do
       h.concat h.content_tag(:span, object.namespace.name + " / ", class: "project-namespace")

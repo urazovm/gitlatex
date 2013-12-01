@@ -3,6 +3,8 @@ class Build < ActiveRecord::Base
   has_many :events, as: :eventable, dependent: :delete_all
   has_many :files, class_name: BuildedFile.name , dependent: :destroy
 
+  scope :project, lambda{|id| where(project_id: id).order(updated_at: :desc)}
+
   after_save :push_event
 
   def push_event
