@@ -1,0 +1,3 @@
+class EventsDecorator < PaginationDecorator
+  
+end

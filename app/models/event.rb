@@ -3,7 +3,7 @@ class Event < ActiveRecord::Base
 
   scope :project, lambda{|id| where(project_id: id).order(updated_at: :desc)}
 
-  def decorate
-    @decorate ||= EventDecorator.decorate(self)
+  def decorate(options=nil)
+    @decorate ||= EventDecorator.decorate(self,options)
   end
 end
