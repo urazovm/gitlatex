@@ -1,6 +1,7 @@
 %h2= t('.title')
 %ul.media-list#events
   = render events
-= paginate events
+.event-paginator
+  = paginate events
 
   
