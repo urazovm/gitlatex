@@ -1,24 +1,15 @@
+.project-hooked
+  = @project.hook_button
 .project-header.page-header
-  .project-hooked
-    = @project.hook_button
-  %h1
-    = @project.header
+  %h1= @project.title
   .activity
     %small= @project.activity
   .link
-    %small= link_to @project.web_url, @project.web_url
-.repo.input-group
-  .input-group-btn
-    = link_to t('.ssh'), '#project-repo-ssh', data: {toggle: 'tab'}, class: 'btn current'
-    = link_to t('.http'), '#project-repo-http', data: {toggle: 'tab'}, class: 'btn'
-  .tab-content
-    .tab-pane.active#project-repo-ssh
-      %input.form-control{value: @project.ssh_url_to_repo}
-    .tab-pane#project-repo-http
-      %input.form-control{value: @project.http_url_to_repo}
-%p.lead.well.project-description
+    %small= @project.link
+= @project.repo
+%p.well.project-description
   = @project.description
-%dl.dl-horizontal
+%dl
   %dt= t('.owner')
   %dd= @project.owner.name
   %dt= t('.created_at')
