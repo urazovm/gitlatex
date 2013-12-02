@@ -3,6 +3,8 @@ class Build < ActiveRecord::Base
   has_many :events, as: :eventable, dependent: :delete_all
   has_many :files, class_name: BuildedFile.name , dependent: :destroy
 
+  serialize :log
+
   scope :project, lambda{|id| where(project_id: id).order(updated_at: :desc)}
 
   after_save :push_event
@@ -24,18 +26,12 @@ class Build < ActiveRecord::Base
     @process = Gitlatex::Process.perform self
 
     self.status = @process.error.nil? ? :success : :error
-    self.log = ''
-    @process.log.each do |log|
+    self.error = @process.error.message if @process.error
+    self.log = @process.log.map do |log|
       if log.is_a?(Symbol)
-        self.log << "<h3>"
-        self.log << I18n.t("builds.build.log.process", command: log.to_s)
-        self.log << "</h3>"
+        log
       else
-        self.log << "<strong>&gt; "
-        self.log << log.command
-        self.log << "</strong><br/>"
-        self.log << log.output.gsub(/\n/, "<br/>")
-        self.log << "<br/>"
+        {command: log.command, output: log.output}
       end
     end
     @process.files.each do |file|
