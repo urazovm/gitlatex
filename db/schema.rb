@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131130010932) do
+ActiveRecord::Schema.define(version: 20131202151158) do
 
   create_table "builded_files", force: true do |t|
     t.string   "name"
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 20131130010932) do
     t.string   "repository_url"
     t.text     "repository_description"
     t.string   "repository_homepage"
+    t.text     "error"
   end
 
   create_table "events", force: true do |t|

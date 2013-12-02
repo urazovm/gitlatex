@@ -3,8 +3,26 @@ class BuildDecorator < Draper::Decorator
 
   decorates_association :files
 
+  def error
+    if object.error.nil?
+      nil
+    else
+      h.content_tag(:div, object.error, class: 'alert alert-danger')
+    end
+  end
+
   def log
-    h.raw object.log
+    h.capture do
+      object.log.each do |log|
+        if log.is_a?(Symbol)
+          h.concat h.content_tag(:h3, I18n.t("builds.build.log.process", command: log.to_s))
+        else
+          h.concat h.content_tag(:strong, log[:command])
+          h.concat h.tag(:br)
+          h.concat h.raw log[:output].gsub(/\n/, h.tag(:br).to_s)
+        end
+      end
+    end
   end
   
   def path
