@@ -1,0 +1,5 @@
+#!/bin/sh
+
+puma_log=$1
+
+exec bundle exec puma 2>&1 >> $puma_log

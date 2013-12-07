@@ -1,0 +1,51 @@
+#!/bin/bash
+
+cd $(dirname $0)/..
+app_root=$(pwd)
+
+puma_pidfile="$app_root/tmp/pids/puma.pid"
+puma_config="$app_root/config/puma.rb"
+puma_log="$app_root/log/puma.log"
+puma_run="$app_root/script/run_puma"
+
+function get_puma_pid
+{
+  local pid=$(cat $puma_pidfile)
+  if [ -z $pid ] ; then
+    echo "Could not find a PID in $puma_pidfile"
+    exit 1
+  fi
+  puma_pid=$pid
+}
+
+function start
+{
+  start-stop-daemon --verbose --start --chdir $app_root --background --exec $puma_run -- $puma_log
+}
+
+function stop
+{
+  get_puma_pid
+  kill -QUIT $puma_pid
+}
+
+function reload
+{
+  get_puma_pid
+  kill -USR2 $puma_pid
+}
+
+case "$1" in
+  start)
+    start
+    ;;
+  stop)
+    stop
+    ;;
+  reload)
+    reload
+    ;;
+  *)
+    echo "Usage: RAILS_ENV=your_env $0 {start|stop|reload}"
+    ;;
+esac
