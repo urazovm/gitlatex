@@ -17,5 +17,7 @@
 
 /config/database.yml
 /config/gitlatex.yml
+/config/puma.rb
 
 /public/files
+/public/assets

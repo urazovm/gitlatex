@@ -238,7 +238,7 @@ print_status() {
   fi
 }
 
-## Tells unicorn to reload it's config and Sidekiq to restart
+## Tells puma to reload it's config and Sidekiq to restart
 reload(){
   exit_if_not_running
   if [ "$wpid" = "0" ];then

@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
   include Breadcrumb
   
   class << self
+    Rails.application.reload_routes!
     include Rails.application.routes.url_helpers
   end
 

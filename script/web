@@ -4,6 +4,7 @@ cd $(dirname $0)/..
 app_root=$(pwd)
 
 puma_pidfile="$app_root/tmp/pids/puma.pid"
+puma_state="$app_root/tmp/pids/puma.state"
 puma_config="$app_root/config/puma.rb"
 puma_log="$app_root/log/puma.log"
 puma_run="$app_root/script/run_puma"
@@ -20,13 +21,13 @@ function get_puma_pid
 
 function start
 {
-  start-stop-daemon --verbose --start --chdir $app_root --background --exec $puma_run -- $puma_log
+  start-stop-daemon --verbose --start --chdir $app_root --background --exec $puma_run -- $puma_config $puma_log
 }
 
 function stop
 {
   get_puma_pid
-  kill -QUIT $puma_pid
+  kill -SIGKILL $puma_pid
 }
 
 function reload
