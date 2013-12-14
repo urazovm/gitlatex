@@ -1,5 +1,6 @@
 #!/bin/sh
 
-puma_log=$1
+puma_config=$1
+puma_log=$2
 
-exec bundle exec puma 2>&1 >> $puma_log
+exec bundle exec puma -e production -C $puma_config 2>&1 >> $puma_log
