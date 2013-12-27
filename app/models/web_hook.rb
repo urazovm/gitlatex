@@ -24,7 +24,12 @@ class WebHook
     build.project_id = self.project_id
     build.ref = self.ref
     build.repository_name = self.repository.name
-    build.repository_url = self.repository.url
+    build.repository_url = 
+      if Settings.hook and Settings.hook.repository then
+        self.repository.url.gsub(Settings.hook.repository,Settings.gitlab.host) 
+      else
+        self.repository.url
+      end
     build.repository_description = self.repository.description
     build.repository_homepage = self.repository.homepage
     build.commit_id = commit.id
