@@ -61,7 +61,7 @@ class Project
         self.keys << h if h
         h
       else
-        delete_key unless self.key.nil?
+        #delete_key unless self.key.nil?
       end
   end
 

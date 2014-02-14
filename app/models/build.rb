@@ -31,7 +31,7 @@ class Build < ActiveRecord::Base
       if log.is_a?(Symbol)
         log
       else
-        {command: log.command, output: log.output}
+        {command: log.command, output: log.output.encode('UTF-16', 'UTF-8', invalid: :replace, replace: '').encode('UTF-8', 'UTF-16')}
       end
     end
     @process.files.each do |file|

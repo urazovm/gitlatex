@@ -32,7 +32,7 @@ function start_no_deamonize
 
 function start_sidekiq
 {
-  bundle exec sidekiq -q default -e $RAILS_ENV -P $sidekiq_pidfile $@ >> $sidekiq_logfile 2>&1
+  bundle exec sidekiq -C config/sidekiq.yml -q default -e $RAILS_ENV -P $sidekiq_pidfile $@ >> $sidekiq_logfile 2>&1
 }
 
 case "$1" in
