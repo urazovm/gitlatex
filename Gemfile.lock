@@ -274,7 +274,7 @@ DEPENDENCIES
   pry-rails
   puma
   rack-attack
-  rails (~> 4.0.2)
+  rails (~> 4.0.3)
   rspec-rails (~> 3.0.0.beta)
   sass-rails (>= 3.2)
   sdoc
