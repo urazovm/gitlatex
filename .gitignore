@@ -19,8 +19,10 @@
 /config/gitlatex.yml
 /config/puma.rb
 /config/sidekiq.yml
+/config/initializers/rack_attack.rb
 
 /public/files
 /public/assets
 
+/bundle
 /vender/bundle

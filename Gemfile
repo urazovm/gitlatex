@@ -1,10 +1,12 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.0.2'
+gem 'rails', '~> 4.0.2'
 
 gem 'mysql2'
 
 gem 'therubyracer', platforms: :ruby
+
+gem "rack-attack"
 
 gem "haml-rails"
 gem 'html2haml', group: :development
@@ -30,6 +32,7 @@ gem 'sinatra', require: false
 gem 'slim'
 
 gem 'puma'
+gem 'foreman'
 
 gem 'seed-fu', github: 'mbleigh/seed-fu'
 
