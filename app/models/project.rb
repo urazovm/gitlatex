@@ -49,20 +49,20 @@ class Project
   def hooked=(value)
     self.hook =
       if value
-        h = add_hook
-        self.hooks << h if h
-        h
+        if self.hook.nil?
+          h = add_hook
+          self.hooks << h if h
+          h
+        else
+          self.hook
+        end
       else
         delete_hook unless self.hook.nil?
       end
-    self.key = 
-      if value
-        h = add_key
-        self.keys << h if h
-        h
-      else
-        #delete_key unless self.key.nil?
-      end
+    if value and self.key.nil?
+      self.key = add_key
+      self.keys << self.key if self.key
+    end
   end
 
   class << self
