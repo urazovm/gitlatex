@@ -24,19 +24,33 @@ class Gitlatex::Process
     end
   end
 
+  def command_with_log_ignore(ignore, *args)
+    if ignore
+      begin
+        command_with_log(*args)
+      rescue
+      end
+    else
+      command_with_log(*args)
+    end
+  end
+
   def run(config)
     self.log << :before_script
     config.before_script.each do |script|
       command_with_log script
     end
     config.process.each do |process|
+      process = process.to_s.split(' ')
+      ignore = process.size > 1 and process[1] == 'ignore'
+      process = process[0].to_sym
       self.log << process
       if config.commands[process].is_a?(Array)
         config.commands[process].each do |script|
-          command_with_log script
+          command_with_log_ignore ignore, script
         end
       else
-        command_with_log config.commands[process]
+        command_with_log_ignore ignore, config.commands[process]
       end
     end
     self.log << :after_script
