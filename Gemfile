@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.0.2'
+gem 'rails', '~> 4.0.0'
 
 gem 'mysql2'
 
@@ -30,6 +30,7 @@ gem 'sinatra', require: false
 gem 'slim'
 
 gem 'puma'
+gem 'foreman'
 
 gem 'seed-fu', github: 'mbleigh/seed-fu'
 
