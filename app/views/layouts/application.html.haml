@@ -1,25 +1,4 @@
 !!! 5
 %html
-  %head
-    %meta{charset: "utf-8"}/
-    %meta{content: "IE=Edge,chrome=1", "http-equiv" => "X-UA-Compatible"}/
-    %meta{content: "width=device-width, initial-scale=1.0", name: "viewport"}/
-    %title= content_for?(:title) ? yield(:title) : "Gitlatex"
-    = csrf_meta_tags
-    = stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true
-    = javascript_include_tag "application", "data-turbolinks-track" => true
-    /[if lt IE 9]
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-  %body
-    .container
-      = render_breadcrumbs
-      = navbar do
-        = navbar_header do
-          = navbar_brand "Gitlatex", root_path
-        = navbar_collapse do
-          = navbar_list align: 'right' do
-            = navbar_link session_path, method: :delete do
-              %span.glyphicon.glyphicon-eject
-      = render partial: 'layouts/alert'
-      = yield
+  %head= render partial: 'layouts/head'
+  %body= render partial: 'layouts/body'

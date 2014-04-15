@@ -1,0 +1,11 @@
+.container
+  = render_breadcrumb
+  = navbar do
+    = navbar_header do
+      = navbar_brand SITE_NAME, root_path, data: { push: true }
+    = navbar_collapse do
+      = navbar_list align: 'right' do
+        = navbar_link session_path, method: :delete do
+          %span.glyphicon.glyphicon-eject
+  = notice_message
+  = yield

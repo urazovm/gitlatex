@@ -1,5 +1,5 @@
 class ProjectsController < AuthenticateController
-  add_breadcrumb I18n.t('crumb.projects'), projects_path
+  drop_breadcrumb I18n.t('crumb.projects'), projects_path
   skip_before_action :verify_authenticity_token, only: [:hook]
   skip_before_action :authenticated!, only: [:hook]
   
@@ -10,7 +10,7 @@ class ProjectsController < AuthenticateController
   def show
     @project = Project.get(params[:id]).decorate
     @events = @project.events.page(params[:page])
-    add_breadcrumb @project.name_with_namespace, project_path(@project)
+    drop_breadcrumb @project.name_with_namespace, project_path(@project)
   end
 
   def update
