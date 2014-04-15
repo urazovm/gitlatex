@@ -27,19 +27,11 @@ gem 'settingslogic'
 gem 'kaminari'
 gem 'sidekiq'
 gem 'whenever', :require => false
-
 gem 'sinatra', require: false
 gem 'slim'
 
 gem 'puma'
 gem 'foreman'
-
-gem 'seed-fu', github: 'mbleigh/seed-fu'
-
-group :development do
-  gem 'pry-rails'
-  gem 'pry-debugger'
-end
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0.beta'
@@ -53,6 +45,3 @@ end
 group :test do
   gem 'coveralls', :require => false
 end
-
-# Use debugger
-# gem 'debugger', group: [:development, :test]
