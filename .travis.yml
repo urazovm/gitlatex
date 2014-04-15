@@ -15,6 +15,5 @@ services:
 before_script:
   - "cp config/database.yml.example config/database.yml"
   - "cp config/gitlatex.yml.example config/gitlatex.yml"
-  - "bundle exec rake db:setup"
-  - "bundle exec rake db:seed_fu"
+  - "RAILS_ENV=test bundle exec rake db:setup"
 script: "bundle exec rake $TASK --trace"
