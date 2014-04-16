@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131202151158) do
+ActiveRecord::Schema.define(version: 20140416183644) do
 
   create_table "builded_files", force: true do |t|
     t.string   "name"
@@ -53,5 +53,52 @@ ActiveRecord::Schema.define(version: 20131202151158) do
   end
 
   add_index "events", ["project_id", "updated_at"], name: "index_events_on_project_id_and_updated_at", using: :btree
+
+  create_table "projects", force: true do |t|
+    t.text     "description"
+    t.string   "default_branch"
+    t.boolean  "public"
+    t.integer  "visibility_level"
+    t.string   "ssh_url_to_repo"
+    t.string   "http_url_to_repo"
+    t.string   "web_url"
+    t.integer  "owner_id_id"
+    t.string   "name"
+    t.string   "name_with_namespace"
+    t.string   "path"
+    t.string   "path_with_namespace"
+    t.boolean  "issues_enabled"
+    t.boolean  "merge_requests_enabled"
+    t.boolean  "wall_enabled"
+    t.boolean  "wiki_enabled"
+    t.boolean  "snippets_enabled"
+    t.integer  "namespace_id"
+    t.string   "namespace_name"
+    t.string   "namespace_path"
+    t.datetime "created_at"
+    t.datetime "last_activity_at"
+  end
+
+  add_index "projects", ["owner_id_id"], name: "index_projects_on_owner_id_id", using: :btree
+
+  create_table "users", force: true do |t|
+    t.string   "username"
+    t.string   "email"
+    t.string   "name"
+    t.string   "state"
+    t.text     "bio"
+    t.string   "skype"
+    t.string   "linkedin"
+    t.string   "twitter"
+    t.string   "website_url"
+    t.string   "extern_uid"
+    t.string   "provider"
+    t.integer  "theme_id"
+    t.integer  "color_scheme_id"
+    t.boolean  "is_admin"
+    t.boolean  "can_create_group"
+    t.boolean  "can_create_project"
+    t.datetime "created_at"
+  end
 
 end

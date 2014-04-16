@@ -1,6 +1,4 @@
 module Gitlatex
 end
 
-require 'gitlatex/log'
-require 'gitlatex/config'
-require 'gitlatex/process'
+Dir[File.expand_path('../*.rb', __FILE__)].each{|f| require f}

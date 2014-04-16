@@ -1,2 +1,2 @@
-web: bundle exec rails s Puma -p $PORT
+web: bundle exec rails s -p $PORT
 worker: bundle exec sidekiq -C config/sidekiq.yml -q default -e development

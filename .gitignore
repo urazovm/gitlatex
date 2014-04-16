@@ -27,3 +27,5 @@
 /bundle
 /vendor/bundle
 /coverage
+
+/bin

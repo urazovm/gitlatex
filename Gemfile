@@ -20,9 +20,10 @@ gem 'jbuilder', '~> 2.0'
 gem 'nprogress-rails'
 
 gem 'draper', '~> 1.3'
-gem 'virtus'
-gem 'httparty'
 gem 'settingslogic'
+gem 'gitlab'
+gem 'warden'
+gem 'rails_warden'
 
 gem 'kaminari'
 gem 'sidekiq'

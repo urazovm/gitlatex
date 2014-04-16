@@ -1,6 +1,6 @@
 en:
   sessions:
-    create:
+    unauthenticated:
       failed_to_sign_in: Failed to sign in. Either username or password has been incorrected.
     destroy:
       sign_out: Success to sign out
