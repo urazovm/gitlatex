@@ -1,14 +1,16 @@
 class Project < ActiveRecord::Base
-  belongs_to :owner, foreign_key: :owner_id, class_name: User.name
-  has_many :user_projects, dependent: :delete_all
-  has_many :users, through: :user_projects
-  has_many :events
+  include Gitlab::Record
 
-  def namespace
-    hash = {id: namespace_id, name: namespace_name, path: namespace_path}
-    Gitlab::ObjectifiedHash.new(hash)
+  belongs_to :creator, foreign_key: "creator_id", class_name: User.name
+  belongs_to :namespace
+
+  has_many :users_projects
+  has_many :users
+
+  has_many :hooks, class_name: ProjectHook.name
+
+  def hooked?
+    !!hooks.where(url: Gitlatex::Routes.project_hook_url(id, only_path: false)).first
   end
-
-  def hooked? ; false ; end
-  def hooked ; false ; end
+  alias :hooked :hooked?
 end

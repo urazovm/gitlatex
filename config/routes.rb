@@ -8,8 +8,6 @@ Gitlatex::Application.routes.draw do
     post :hook
     resources :builds, only: [:show]
   end
-
-  post :hook, controller: :hooks, action: :hook
   
   resource :session, only: [:create, :new, :destroy]
 

@@ -2,7 +2,8 @@ source 'https://rubygems.org'
 
 gem 'rails', '~> 4.0.4'
 
-gem 'mysql2'
+gem 'mysql2', group: :mysql
+gem 'pg', group: :postgres
 
 gem 'therubyracer', platforms: :ruby
 
