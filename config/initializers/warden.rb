@@ -11,18 +11,18 @@ class Warden::SessionSerializer
   
   def deserialize(keys)
     klass, id, token = keys
-    klass.where(id: id).first
+    klass.constantize.where(id: id).first
   end
 end
 
 # Declare your strategies here
 Warden::Strategies.add(:gitlab) do
   def valid?
-    params.has_key?(:password) && params.has_key?(:login)
+    params.has_key?(:user) && params[:user].has_key?(:password) && params[:user].has_key?(:login)
   end
   
   def authenticate!
-    user = User.authenticate(params[:login],params[:password])
+    user = User.authenticate(params[:user][:login],params[:user][:password])
     if user
       success!(user)
     else
