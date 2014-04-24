@@ -10,7 +10,7 @@ class Warden::SessionSerializer
   end
   
   def deserialize(keys)
-    klass, id = keys
+    klass, id, token = keys
     klass.where(id: id).first
   end
 end

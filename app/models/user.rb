@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  has_many :projects
 
   class << self
     def authenticate(login, password)

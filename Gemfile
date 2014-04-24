@@ -24,6 +24,7 @@ gem 'settingslogic'
 gem 'gitlab'
 gem 'warden'
 gem 'rails_warden'
+gem 'sshkey'
 
 gem 'kaminari'
 gem 'sidekiq'
