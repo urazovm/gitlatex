@@ -15,7 +15,7 @@ module Gitlatex
     def puts_with_check
       print self
       result = yield
-      puts " -- #{result}"
+      puts " -- #{result.emph}"
       result
     end
 
@@ -23,10 +23,10 @@ module Gitlatex
       print self
       begin
         result = yield
-        puts " -- success"
+        puts " -- \e[1;37;44msuccess\e[0m"
         return result
       rescue => e
-        puts " -- failed"
+        puts " -- \e[1;37;41mfailed\e[0m"
         raise e
       end
     end
