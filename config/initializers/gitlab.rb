@@ -3,4 +3,4 @@ Gitlab.configure do |config|
   config.user_agent = 'Gitlatex'
 end
 
-Gitlab.client.class.send :include, Gitlatex::Gitlab
+Gitlab::Client.send :include, Gitlatex::Gitlab
