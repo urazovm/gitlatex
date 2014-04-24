@@ -28,6 +28,7 @@ gem 'sshkey'
 
 gem 'kaminari'
 gem 'sidekiq'
+gem 'sidekiq-limit_fetch'
 gem 'whenever', :require => false
 gem 'sinatra', require: false
 gem 'slim'

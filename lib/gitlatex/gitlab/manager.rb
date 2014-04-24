@@ -1,8 +1,11 @@
 require 'io/console'
-require 'gitlatex/assure'
 
 module Gitlatex::Gitlab::Manager
   include Gitlatex::Assure
+
+  def self.accessable!
+    Gitlab.private_token = Gitlab.gitlatex.private_token if Gitlab.private_token.nil?
+  end
 
   def self.create!
     email = Settings.gitlab_account.email
@@ -15,6 +18,7 @@ module Gitlatex::Gitlab::Manager
     "Create gitlatex manager user".puts_with_rescue! do
       Gitlab.create_user email, password, options
     end
+    Gitlab.private_token = nil
   end
 
   assure :user do

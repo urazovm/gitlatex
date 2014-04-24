@@ -24,16 +24,21 @@ namespace :gitlatex do
 
   namespace :sync do
     desc "Synchronize all information of Gitlab"
-    task :all => ["gitlatex:sync:user", "gitlatex:sync:project"]
+    task :all => ["gitlatex:sync:user", "gitlatex:sync:project", "gitlatex:sync:hook"]
 
     desc "Synchronize user information of Gitlab"
     task :user => :environment do
-      p "Sync user"
+      Gitlatex::Gitlab::Sync.assure_users
     end
 
     desc "Synchronize project information of Gitlab"
     task :project => :environment do
-      p "Sync project"
+      Gitlatex::Gitlab::Sync.assure_projects
+    end
+
+    desc "Setup hook for synchronization"
+    task :hook => :environment do
+      Gitlatex::Gitlab::Sync.assure_hook
     end
   end
 end

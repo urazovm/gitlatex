@@ -11,7 +11,7 @@ class CreateProjects < ActiveRecord::Migration
       t.string :http_url_to_repo
       t.string :web_url
 
-      t.references :owner_id, index: true
+      t.references :owner, index: true
 
       t.string :name
       t.string :name_with_namespace

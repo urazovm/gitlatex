@@ -8,8 +8,12 @@ module Gitlatex::Assure
   end
 
   module ClassMethods
+    def before(&block)
+      (@befores ||= []) << block
+    end
     def assure(name, &block)
       self.send :define_singleton_method, "assure_#{name}" do
+        (@befores || []).each(&:call)
         Definition.new &block
       end
     end

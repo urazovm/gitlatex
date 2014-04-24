@@ -1,3 +1,6 @@
+
+Dir[File.expand_path('../client/*.rb', __FILE__)].each{|f| require f}
+
 module Gitlab
   class Client
     def set_request_defaults(endpoint, private_token, sudo=nil)
@@ -8,13 +11,13 @@ module Gitlab
       self.class.headers 'PRIVATE-TOKEN' => private_token if private_token
       self.class.headers 'SUDO' => sudo if sudo
     end
-    
-    def session(login, password)
-      post("/session", body: {login: login, password: password})
-    end
 
-    def gitlatex
-      session Settings.gitlab_account.email, Settings.gitlab_account.password
+    def validate_with_rel(response)
+      result = validate_without_rel(response)
+      result.is_a?(Array) ? Gitlab::ResponseArray.new(response) : result
     end
+    alias_method_chain :validate, :rel
+
+    include SystemHooks
   end
 end

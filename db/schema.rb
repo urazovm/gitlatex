@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140416183644) do
+ActiveRecord::Schema.define(version: 20140424091213) do
 
   create_table "builded_files", force: true do |t|
     t.string   "name"
@@ -62,7 +62,7 @@ ActiveRecord::Schema.define(version: 20140416183644) do
     t.string   "ssh_url_to_repo"
     t.string   "http_url_to_repo"
     t.string   "web_url"
-    t.integer  "owner_id_id"
+    t.integer  "owner_id"
     t.string   "name"
     t.string   "name_with_namespace"
     t.string   "path"
@@ -77,9 +77,10 @@ ActiveRecord::Schema.define(version: 20140416183644) do
     t.string   "namespace_path"
     t.datetime "created_at"
     t.datetime "last_activity_at"
+    t.boolean  "synced",                 default: true
   end
 
-  add_index "projects", ["owner_id_id"], name: "index_projects_on_owner_id_id", using: :btree
+  add_index "projects", ["owner_id"], name: "index_projects_on_owner_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "username"
@@ -99,6 +100,7 @@ ActiveRecord::Schema.define(version: 20140416183644) do
     t.boolean  "can_create_group"
     t.boolean  "can_create_project"
     t.datetime "created_at"
+    t.boolean  "synced",             default: true
   end
 
 end
