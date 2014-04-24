@@ -4,7 +4,7 @@ class ProjectsController < AuthenticateController
   skip_before_action :authenticated!, only: [:hook]
   
   def index
-    @projects = ProjectDecorator.decorate_collection(Project.all || [])
+    @projects = ProjectDecorator.decorate_collection(current_user.projects || [])
   end
 
   def show

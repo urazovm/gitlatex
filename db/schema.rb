@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140424091213) do
+ActiveRecord::Schema.define(version: 20140424121607) do
 
   create_table "builded_files", force: true do |t|
     t.string   "name"
@@ -81,6 +81,15 @@ ActiveRecord::Schema.define(version: 20140424091213) do
   end
 
   add_index "projects", ["owner_id"], name: "index_projects_on_owner_id", using: :btree
+
+  create_table "user_projects", force: true do |t|
+    t.integer "user_id"
+    t.integer "project_id"
+    t.boolean "synced",     default: true
+  end
+
+  add_index "user_projects", ["project_id"], name: "index_user_projects_on_project_id", using: :btree
+  add_index "user_projects", ["user_id"], name: "index_user_projects_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "username"

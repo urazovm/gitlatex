@@ -33,6 +33,28 @@ module Gitlatex::Gitlab::Sync
     Project.where(synced: false).destroy_all
   end
 
+  assure :user_projects do
+    UserProject.update_all(synced: false)
+    request :all_projects, per_page: 100 do |response|
+      while response.is_a?(Array)
+        puts "#{response.length} projects".emph
+        response.each do |project|
+          members = Gitlab.team_members(project.id)
+          while members.is_a?(Array)
+            puts "  has #{members.length} members".emph
+            members.each do |member|
+              UserProjectWorker.new.perform project.id, member.email
+            end
+            members = members.has_next? ? members.retrive_next : nil
+          end
+        end
+        response = response.has_next? ? response.retrive_next : nil
+      end      
+    end
+    puts UserProject.where(synced: false).map(&:synced)
+    UserProject.where(synced: false).destroy_all
+  end
+
   assure :hook do
     request :hooks do |response|
       def check_single_hook(response)
