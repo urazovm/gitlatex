@@ -1,4 +1,5 @@
 require 'sidekiq/web'
+require 'gitlatex/admin_constraint'
 
 Gitlatex::Application.routes.draw do
   root "dashboard#index"
@@ -12,5 +13,5 @@ Gitlatex::Application.routes.draw do
   
   resource :session, only: [:create, :new, :destroy]
 
-  mount Sidekiq::Web, at: "/sidekiq"
+  mount Sidekiq::Web => '/sidekiq', :constraints => Gitlatex::AdminConstraint.new
 end
