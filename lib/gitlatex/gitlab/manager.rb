@@ -3,8 +3,16 @@ require 'io/console'
 module Gitlatex::Gitlab::Manager
   include Gitlatex::Assure
 
+  def self.id
+    @id
+  end
+
   def self.accessable!
-    Gitlab.private_token = Gitlab.gitlatex.private_token if Gitlab.private_token.nil?
+    if Gitlab.private_token.nil? or @id.nil?
+      manager = Gitlab.gitlatex
+      Gitlab.private_token = manager.private_token
+      @id = manager.id
+    end
   end
 
   def self.create!

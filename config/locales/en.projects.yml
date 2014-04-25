@@ -1,11 +1,12 @@
 en:
   projects:
     project:
-      hook:
-        on: On
-        off: Off
       last_activity: "Last Activity: "
       never: Never
+    activation:
+      on: On
+      off: Off
+      setting: Setting..
     index:
       title: Your Projects List
 

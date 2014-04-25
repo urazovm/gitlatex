@@ -1,5 +1,5 @@
 .project
-  .activation
+  = render partial: 'projects/activation', object: project, as: :project, locals: { detail: (defined? detail and detail) }
   .header
     %span.namespace= project.namespace.human_name + '/'
     %span.name= project.name
@@ -11,6 +11,5 @@
       = link_to project.web_url, project.web_url
     %p.description
       = project.description
-
 
 

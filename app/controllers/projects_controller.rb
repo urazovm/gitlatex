@@ -4,7 +4,7 @@ class ProjectsController < AuthenticateController
   skip_before_action :authenticated!, only: [:hook]
   
   def index
-    @projects = current_user.authorized_projects
+    @projects = current_user.authorized_projects.sorted_by_activity.non_archived
   end
 
   def show
@@ -14,14 +14,12 @@ class ProjectsController < AuthenticateController
   end
 
   def update
-    @project = Project.get(params[:id])
-    @project.object.hooked = !@project.object.hooked
-    unless request.xhr?
-      redirect_to project_path(@project)
+    @project = Project.where(id: params[:id]).first
+    @project.toggle_activate
+    if request.xhr?
+      respond_to :js
     else
-      respond_to do |format|
-        format.js
-      end
+      redirect_to project_path(@project)
     end
   end
 

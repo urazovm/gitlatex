@@ -1,0 +1,8 @@
+- classes = ['activation']
+- classes << 'on' if project.activate?
+- if detail
+  = link_to project, class: classes.join(' '), data: { "loading-text" => t('.setting') }, remote: true, method: :put do
+    %span.on= t('.on')
+    %span.off= t('.off')
+- else
+  %div{ class: classes.join(' ') }
