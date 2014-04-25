@@ -1,2 +1,3 @@
 %h1= t('.title')
-= render partial: 'projects/projects'
+.projects
+  = render partial: 'project', collection: @projects, as: :project, layout: 'list_item'

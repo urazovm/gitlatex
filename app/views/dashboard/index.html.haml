@@ -1,6 +1,8 @@
 .dashboard
   .main-col
-    = render @events or t('events.empty')
+    .events
+      = render @events or t('events.empty')
   .side-col
     = link_to t(".projects"), projects_path, class: 'to-projects'
-    = render @projects || t('projects.empty')
+    .projects
+      = render partial: 'projects/project', collection: @projects, as: :project, layout: 'projects/list_item' || t('projects.empty')

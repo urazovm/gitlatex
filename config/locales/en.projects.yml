@@ -6,8 +6,6 @@ en:
         off: Off
       last_activity: "Last Activity: "
       never: Never
-      owner: Owner
-      created_at: Created at
     index:
       title: Your Projects List
 

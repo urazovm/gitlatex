@@ -1,3 +1,33 @@
+
+.projects {
+  @extend .list-group;
+  .project-item {
+    @extend .list-group-item;
+  }
+
+  .project {
+    .link { display: none; }
+    .description { display: none; }
+  }
+}
+
+.project {  
+  .header {
+    @extend h3;
+    word-wrap: break-word;
+  }
+  .link {
+    word-wrap: break-word;
+  }
+  .description {
+    @extend .well;
+    margin-top: 12px;
+  }
+}
+
+
+
+
 .project-item-namespace {
     @extend small;
 }
