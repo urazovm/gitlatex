@@ -1,14 +1,16 @@
 .project
-  .project-active
+  .activation
   .header
-    = project.path_with_namespace
+    %span.namespace= project.namespace.human_name + '/'
+    %span.name= project.name
   .activity
     = t('.last_activity')
     = t('datetime.ago', ago: time_ago_in_words(project.last_activity_at))
-  .link
-    = link_to project.web_url, project.web_url
-  %p.description
-    = project.description
+  - if defined? detail and detail
+    .link
+      = link_to project.web_url, project.web_url
+    %p.description
+      = project.description
 
 
 

@@ -3,6 +3,6 @@
     .events
       = render @events or t('events.empty')
   .side-col
-    = link_to t(".projects"), projects_path, class: 'to-projects'
+    = link_to t(".projects"), projects_path, class: 'to-projects', data: { push: true }
     .projects
-      = render partial: 'projects/project', collection: @projects, as: :project, layout: 'projects/list_item' || t('projects.empty')
+      = render partial: @projects, layout: 'projects/list_item' || t('projects.empty')

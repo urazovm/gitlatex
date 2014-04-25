@@ -14,7 +14,14 @@
 .project {  
   .header {
     @extend h3;
-    word-wrap: break-word;
+    word-break: break-all;
+
+    .namespace {
+      @extend small;
+    }
+    .name {
+      color: $brand-primary;
+    }
   }
   .link {
     word-wrap: break-word;

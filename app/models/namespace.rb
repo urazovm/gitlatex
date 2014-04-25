@@ -7,6 +7,6 @@ class Namespace < ActiveRecord::Base
   delegate :name, to: :owner, allow_nil: true, prefix: true
 
   def human_name
-    owner_name || ''
+    owner_name
   end
 end

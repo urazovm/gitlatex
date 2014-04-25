@@ -1,3 +1,4 @@
-%h1= t('.title')
-.projects
-  = render partial: 'project', collection: @projects, as: :project, layout: 'list_item'
+.row
+  %h1= t('.title')
+  .projects
+    = render partial: @projects, layout: 'list_item'
