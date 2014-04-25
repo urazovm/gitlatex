@@ -20,7 +20,6 @@ gem 'bootstrap_helper', '~> 4.2.3'
 gem 'jbuilder', '~> 2.0'
 gem 'nprogress-rails'
 
-gem 'draper', '~> 1.3'
 gem 'settingslogic'
 gem 'gitlab'
 gem 'warden'

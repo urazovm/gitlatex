@@ -1,18 +1,18 @@
-.project-hooked
-  = @project.hook_button
+.project
+  .project-active
 .project-header.page-header
-  %h1= @project.title
+  %h1= project.path_with_namespace
   .activity
-    %small= @project.activity
+    ?%small= project.activity
   .link
-    %small= @project.link
+    ?%small= project.link
 %p.well.project-description
-  = @project.description
+  = project.description
 %dl
   %dt= t('.owner')
-  %dd= @project.owner.name
+  %dd= project.owner.name
   %dt= t('.created_at')
-  %dd= l(@project.created_at)
+  %dd= l(project.created_at)
 
   
 

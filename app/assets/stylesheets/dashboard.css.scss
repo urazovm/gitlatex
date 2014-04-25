@@ -1,3 +1,7 @@
-.dashboard-to-projects {
+.dashboard {
+  @extend .row;
+}
+
+.to-projects {
   margin: 8px 4px;
 }

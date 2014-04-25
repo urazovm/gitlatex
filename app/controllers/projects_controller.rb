@@ -4,17 +4,17 @@ class ProjectsController < AuthenticateController
   skip_before_action :authenticated!, only: [:hook]
   
   def index
-    @projects = ProjectDecorator.decorate_collection(current_user.authorized_projects)
+    @projects = current_user.authorized_projects
   end
 
   def show
-    @project = Project.where(id: params[:id]).first.decorate
+    @project = Project.where(id: params[:id]).first
     @events = @project.events.page(params[:page])
     drop_breadcrumb @project.name_with_namespace, project_path(@project)
   end
 
   def update
-    @project = Project.get(params[:id]).decorate
+    @project = Project.get(params[:id])
     @project.object.hooked = !@project.object.hooked
     unless request.xhr?
       redirect_to project_path(@project)

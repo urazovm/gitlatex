@@ -53,11 +53,6 @@ GEM
     diff-lcs (1.2.5)
     docile (1.1.3)
     dotenv (0.7.0)
-    draper (1.3.0)
-      actionpack (>= 3.0)
-      activemodel (>= 3.0)
-      activesupport (>= 3.0)
-      request_store (~> 1.0.3)
     erubis (2.7.0)
     execjs (2.0.2)
     foreman (0.66.0)
@@ -136,7 +131,6 @@ GEM
     redis-namespace (1.4.1)
       redis (~> 3.0.4)
     ref (1.0.5)
-    request_store (1.0.5)
     rest-client (1.6.7)
       mime-types (>= 1.16)
     rspec-collection_matchers (0.0.3)
@@ -236,7 +230,6 @@ DEPENDENCIES
   bootstrap_helper (~> 4.2.3)
   coffee-rails (~> 4.0.1)
   coveralls
-  draper (~> 1.3)
   foreman
   gitlab
   haml-rails

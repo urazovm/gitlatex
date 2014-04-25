@@ -5,3 +5,4 @@ en:
       message: Unkown event
     events:
       title: Latest Activity
+    empty: There is no event.

@@ -4,9 +4,6 @@ en:
       hook:
         on: On
         off: Off
-      repo:
-        ssh: ssh
-        http: http
       last_activity: "Last Activity: "
       never: Never
       owner: Owner

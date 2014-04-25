@@ -1,7 +1,6 @@
-.row
-  .col-xs-12.col-sm-9
-    = render partial: 'events/events', object: @events
-  .col-xs-6.col-sm-3
-    .dashboard-to-projects
-      = link_to t(".project_list"), projects_path
-    = render partial: 'projects/projects'
+.dashboard
+  .main-col
+    = render @events or t('events.empty')
+  .side-col
+    = link_to t(".projects"), projects_path, class: 'to-projects'
+    = render @projects || t('projects.empty')

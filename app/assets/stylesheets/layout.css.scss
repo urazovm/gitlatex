@@ -14,3 +14,13 @@
 .alert-error {
     @extend .alert-danger;
 }
+
+.main-col {
+  @extend .col-xs-12;
+  @extend .col-sm-9;
+}
+
+.side-col {
+  @extend .col-xs-6;
+  @extend .col-sm-3;
+}
