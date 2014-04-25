@@ -50,27 +50,4 @@ class ProjectDecorator < Draper::Decorator
   def link
     h.link_to object.web_url, object.web_url
   end
-
-  def repo(prefix='project-repo')
-    h.content_tag(:div, class: "repo input-group") do
-      h.capture do
-        h.concat(h.content_tag(:div, class: 'input-group-btn') do
-          h.capture do
-            h.concat h.link_to(h.t('projects.project.repo.ssh'), "##{prefix}-ssh", data: {toggle: 'tab'}, class: 'btn current')
-            h.concat h.link_to(h.t('projects.project.repo.http'), "##{prefix}-http", data: {toggle: 'tab'}, class: 'btn')
-          end
-        end)
-        h.concat(h.content_tag(:div, class: 'tab-content') do
-          h.capture do
-            h.concat(h.content_tag(:div, class: 'tab-pane active', id: "#{prefix}-ssh") do
-              h.content_tag(:input, nil, class: 'form-control', value: object.ssh_url_to_repo)
-            end)
-            h.concat(h.content_tag(:div, class: 'tab-pane', id: "#{prefix}-http") do
-              h.content_tag(:input, nil, class: 'form-control', value: object.http_url_to_repo)
-            end)
-          end
-        end)
-      end
-    end
-  end
 end
