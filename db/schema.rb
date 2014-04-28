@@ -11,13 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140428092014) do
+ActiveRecord::Schema.define(version: 20140428183256) do
 
   create_table "build_logs", force: true do |t|
     t.integer "process_id"
-    t.integer "number",     default: 0,  null: false
-    t.string  "command",    default: "", null: false
-    t.text    "log"
+    t.integer "number",                        default: 0,  null: false
+    t.string  "command",                       default: "", null: false
+    t.text    "log",        limit: 2147483647
   end
 
   add_index "build_logs", ["process_id", "number"], name: "index_build_logs_on_process_id_and_number", using: :btree
@@ -33,16 +33,6 @@ ActiveRecord::Schema.define(version: 20140428092014) do
   add_index "build_processes", ["build_id", "number"], name: "index_build_processes_on_build_id_and_number", using: :btree
   add_index "build_processes", ["build_id"], name: "index_build_processes_on_build_id", using: :btree
 
-  create_table "builded_files", force: true do |t|
-    t.string   "name"
-    t.string   "path"
-    t.integer  "build_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "builded_files", ["build_id"], name: "index_builded_files_on_build_id", using: :btree
-
   create_table "builds", force: true do |t|
     t.integer  "project_id"
     t.string   "commit_id"
@@ -52,7 +42,7 @@ ActiveRecord::Schema.define(version: 20140428092014) do
     t.string   "author_name"
     t.string   "author_email"
     t.string   "status"
-    t.text     "log"
+    t.text     "log",                    limit: 2147483647
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "ref"
@@ -73,5 +63,15 @@ ActiveRecord::Schema.define(version: 20140428092014) do
   end
 
   add_index "events", ["project_id", "updated_at"], name: "index_events_on_project_id_and_updated_at", using: :btree
+
+  create_table "files", force: true do |t|
+    t.string   "name"
+    t.string   "path"
+    t.integer  "build_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "files", ["build_id"], name: "index_files_on_build_id", using: :btree
 
 end

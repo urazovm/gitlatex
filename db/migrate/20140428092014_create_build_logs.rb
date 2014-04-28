@@ -5,7 +5,7 @@ class CreateBuildLogs < ActiveRecord::Migration
       t.integer :number, null: false, default: 0
 
       t.string :command, null: false, default: ''
-      t.text :log, length: 4294967295
+      t.text :log, limit: 4294967295
 
       t.index [:process_id, :number]
     end

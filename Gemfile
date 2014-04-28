@@ -25,6 +25,8 @@ gem 'gitlab'
 gem 'warden'
 gem 'rails_warden'
 gem 'sshkey'
+gem 'ruby-progressbar'
+gem 'string-scrub'
 
 gem 'kaminari'
 gem 'sidekiq'
