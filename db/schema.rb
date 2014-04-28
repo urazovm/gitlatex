@@ -11,7 +11,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131202151158) do
+ActiveRecord::Schema.define(version: 20140428092014) do
+
+  create_table "build_logs", force: true do |t|
+    t.integer "process_id"
+    t.integer "number",     default: 0,  null: false
+    t.string  "command",    default: "", null: false
+    t.text    "log"
+  end
+
+  add_index "build_logs", ["process_id", "number"], name: "index_build_logs_on_process_id_and_number", using: :btree
+  add_index "build_logs", ["process_id"], name: "index_build_logs_on_process_id", using: :btree
+
+  create_table "build_processes", force: true do |t|
+    t.integer "build_id"
+    t.integer "number",   default: 0,  null: false
+    t.string  "name",     default: "", null: false
+    t.string  "args"
+  end
+
+  add_index "build_processes", ["build_id", "number"], name: "index_build_processes_on_build_id_and_number", using: :btree
+  add_index "build_processes", ["build_id"], name: "index_build_processes_on_build_id", using: :btree
 
   create_table "builded_files", force: true do |t|
     t.string   "name"
