@@ -24,11 +24,8 @@ class ProjectsController < AuthenticateController
   end
 
   def hook
-    @web_hook = WebHook.new params
-    @build = @web_hook.build
-    if @build.save
-      BuildWorker.perform_async @build.id
-    end
+    @hook = Gitlatex::WebHook.new params
+    @hook.perform!
     head :ok
   end
 end

@@ -1,5 +1,5 @@
 .row
-  .col-xs12.col-sm-9
+  .main-col
     %h1= @build.title
     = @build.message
     = @build.error
@@ -7,5 +7,5 @@
     = render @build.files
     %h2= t('.log')
     .build-log= @build.log
-  .col-xs-6.col-sm-3
-    = render 'projects/project', object: @project
+  .side-col
+    = render partial: @project, locals: { detail: true }

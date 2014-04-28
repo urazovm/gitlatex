@@ -6,20 +6,19 @@
   }
 
   .project {
-    padding-top: 0;
-    
+    .header {
+      margin-top: 15px;
+    }
     .link { display: none; }
     .description { display: none; }
   }
 }
 
 .project {
-  position: relative;
-  padding-top: $line-height-computed / 2;
-  
   .header {
     @extend h4;
     word-break: break-all;
+    margin-top: 45px;
 
     .namespace {
       @extend small;
@@ -33,13 +32,14 @@
   }
   .description {
     @extend .well;
+    @extend .well-sm;
     margin-top: 12px;
   }
 
   .activation {
     position: absolute;
-    right: -9px;
-    top: -14px;
+    right: 4px;
+    top: 4px;
     width: 20px;
     height: 20px;
     border-radius: 4px;

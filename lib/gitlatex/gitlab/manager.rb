@@ -51,7 +51,8 @@ module Gitlatex::Gitlab::Manager
         Gitlab.private_token = response.private_token
       end
     end
-    
+
+    Gitlatex::Gitlab::Manager.accessable!    
     request :user do |response|
       def check_user(response)
         return false unless response.email == Settings.gitlab_account.email
@@ -73,7 +74,9 @@ module Gitlatex::Gitlab::Manager
     end
   end
 
+  
   assure :user_key do
+    Gitlatex::Gitlab::Manager.accessable!
     request :ssh_keys do |response|
       def check_single_key(response)
         response.length <= 1
