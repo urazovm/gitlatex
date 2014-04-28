@@ -26,15 +26,12 @@ module ProjectActivation
     Gitlatex::Gitlab::Manager.id
   end
 
-  def manager_name
-    Settings.gitlab_account.username
-  end
-  
+  private
   def hook?
     hooks.exists?(url: hook_url)
   end
   def manage?
-    users.exists?(username: manager_name)
+    users.exists?(id: manager_id)
   end
   
   def hook
