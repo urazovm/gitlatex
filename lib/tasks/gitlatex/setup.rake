@@ -1,6 +1,16 @@
 namespace :gitlatex do
   desc "Setup Gitlatex for production application"
-  task :setup => ["db:setup", "gitlatex:manager:setup"]
+  task :setup => ["gitlatex:env:setup", "db:setup", "gitlatex:manager:setup"]
+
+  namespace :env do
+    desc "Setup environment"
+    task :setup => [:dir]
+    
+    desc "Ensure directories"
+    task :dir => :environment do
+      Gitlatex::Gitlab::Env.assure_directory
+    end
+  end
 
   namespace :manager do
     desc "Setup the manager user"

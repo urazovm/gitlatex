@@ -9,11 +9,12 @@ class Build < ActiveRecord::Base
   scope :project, lambda{|id| where(project_id: id).order(updated_at: :desc)}
 
   def perform
-    process = Gitlatex::Process.perform self
+    build = Gitlatex::Build.new self
+    build.perform
 
-    self.status = process.error.nil? ? :success : :error
+    self.status = build.status
     self.error = process.error.try(:message)
-    process.process.each_with_index do |process, index|
+    build.processes.each_with_index do |process, index|
       self.process << BuildProcess.new do |p|
         p.number = index
         p.name = process.name
@@ -26,7 +27,7 @@ class Build < ActiveRecord::Base
         end
       end
     end
-    process.files.each do |file|
+    build.files.each do |file|
       self.files << BuildedFile.new do |f|
         f.name = f.name
         f.path = f.path
